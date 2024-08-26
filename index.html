@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook-P3-M02</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .banner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .banner .title {
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+        }
+        .banner .subtitle {
+            font-size: 1em;
+            margin-top: 5px;
+            border-top: 1px solid white;
+            padding-top: 5px;
+        }
+        .content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: right;
+        }
+        .dialogue {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: right;
+            font-style: italic;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+        }
+        .dropdown select {
+            font-size: 1em;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        .time-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .note {
+            background-color: #ffeb3b;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .nav-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-buttons button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+        function updateActivities() {
+            var selectedTime = document.getElementById('time-select').value;
+            var activities = document.getElementsByClassName('activity');
+
+            document.getElementById('selected-time').innerText = "Tiempo efectivo de clase: " + selectedTime + " minutos";
+
+            for (var i = 0; i < activities.length; i++) {
+                activities[i].style.display = 'block';
+            }
+
+            if (selectedTime === '45') {
+                document.getElementById('activity-2').style.display = 'none';
+            } else if (selectedTime === '40') {
+                document.getElementById('activity-2').style.display = 'none';
+                document.getElementById('activity-4').style.display = 'none';
+                document.getElementById('activity-8-step-1').style.display = 'none';
+                document.getElementById('activity-8-step-2').style.display = 'none';
+            }
+        }
+
+        function navigateTo(id) {
+            var element = document.getElementById(id);
+            window.scrollTo({
+                top: element.offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</head>
+<body onload="updateActivities()">
+
+<div class="header">
+    <h1>Playbook - Scratch y Sensores</h1>
+</div>
+
+<div class="container">
+    <div class="dropdown">
+        <label for="time-select">Tiempo efectivo de Clase:</label>
+        <select id="time-select" onchange="updateActivities()">
+            <option value="50">50 minutos</option>
+            <option value="45">45 minutos</option>
+            <option value="40">40 minutos</option>
+        </select>
+    </div>
+
+    <h2 id="selected-time" class="time-title">Tiempo efectivo de clase: 50 minutos</h2>
+<!-- Actividad 0 (1 paso) -->
+<div id="activity-0" class="activity">
+    <div class="banner" onclick="toggleContent('revision-mision')">
+        <div class="title">
+            <span>📝 Actividad 0: Revisión Misión (1 paso)</span>
+            <span>⏰ Tiempo: 0.5 minutos</span>
+        </div>
+        <div class="subtitle">Verificar que todo esté listo</div>
+        <div class="summary">Iniciar la presentación y asegurarse de que todas las computadoras estén encendidas y que Scratch esté accesible.</div>
+    </div>
+    <div id="revision-mision" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Iniciar la presentación y verificar</div>
+            <div class="section-title">Acción</div>
+            <div class="dialogue">Iniciar la presentación, verificar que todas las computadoras estén encendidas y que Scratch esté accesible en cada una.</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 1 (4 pasos) -->
+<div id="activity-1" class="activity">
+    <div class="banner" onclick="toggleContent('saludo-ritual')">
+        <div class="title">
+            <span>👋 Actividad 1: Saludo y Ritual Gnius Club (4 pasos)</span>
+            <span>⏰ Tiempo: 3 minutos</span>
+        </div>
+        <div class="subtitle">Comenzar la clase con energía y enfoque</div>
+        <div class="summary">Saludar a los estudiantes, identificar cómo se sienten, realizar un ejercicio de agradecimiento, y presentar los objetivos de la clase.</div>
+    </div>
+    <div id="saludo-ritual" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Proyectar la diapositiva inicial y saludar</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Hola, pequeños programadores! Hoy vamos a descubrir cómo controlar Scratch usando eventos y sensores. ¿Están listos?"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (0.5 minutos): Proyectar la diapositiva y realizar una actividad interactiva</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Hoy, vamos a ver cómo se sienten antes de empezar. Si estás emocionado, muéstrame un pulgar arriba. Si te sientes un poco nervioso, muéstrame un pulgar abajo. ¡Vamos a ver cómo está nuestro equipo hoy!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Proyectar la diapositiva y guiar en el agradecimiento</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Vamos a juntar nuestras manos en agradecimiento por lo que vamos a aprender hoy. ¡Gracias por Asistir!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1 minuto): Proyectar la diapositiva y mostrar los objetivos</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Hoy vamos a trabajar en tres objetivos principales: 1. Entender cómo funcionan los bloques de eventos en Scratch. 2. Aprender a usar los bloques de sensores. 3. Aplicar lo aprendido en un pequeño ejemplo práctico."</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 2 (3 pasos) -->
+<div id="activity-2" class="activity">
+    <div class="banner" onclick="toggleContent('innovacion-dia')">
+        <div class="title">
+            <span>💡 Actividad 2: Innovación del Día (3 pasos)</span>
+            <span>⏰ Tiempo: 3.5 minutos</span>
+        </div>
+        <div class="subtitle">Explorar nuevas ideas y tecnologías</div>
+        <div class="summary">Presentar un video sobre sensores y realidad virtual, y conectar la información con los conceptos que aprenderán en Scratch.</div>
+    </div>
+    <div id="innovacion-dia" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Proyectar la diapositiva y presentar el contexto del video</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Hoy vamos a ver un video increíble que nos muestra cómo los sensores y la realidad virtual están ayudando a las personas en fisioterapia. ¡Vamos a descubrir cómo funciona!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (2 minutos): Proyectar la diapositiva con el video</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Miremos el video."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Proyectar la diapositiva y hacer preguntas a los estudiantes</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¿Qué les pareció? ¿Cómo creen que podríamos usar los sensores en nuestros proyectos de Scratch? ¿Qué otros usos de los sensores pueden imaginar?"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 3 (13 pasos) -->
+<div id="activity-3" class="activity">
+    <div class="banner" onclick="toggleContent('brain-gym')">
+        <div class="title">
+            <span>🧠 Actividad 3: Brain Gym (13 pasos)</span>
+            <span>⏰ Tiempo: 16 minutos</span>
+        </div>
+        <div class="subtitle">Ejercitar la mente y aplicar lo aprendido en Scratch</div>
+        <div class="summary">Anunciar la actividad, explorar bloques en Scratch, y guiar a los estudiantes en la creación de un programa utilizando eventos y sensores.</div>
+    </div>
+    <div id="brain-gym" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (1 minuto): Proyectar la diapositiva y anunciar la actividad de Brain Gym</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Antes de empezar a descubrir cómo los bloques de eventos y sensores pueden hacer que nuestros personajes en Scratch cobren vida, vamos a ejercitar nuestros cerebros. Recuerden, dentro de lo que voy a explicar, hay un Easter Egg. Al final de la clase voy a hacer una pregunta, y quien la responda correctamente ganará un Mon-e. ¡Presten mucha atención!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (2 minutos): Explicar el uso del bloque 'cuando se presiona tecla'</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"El bloque 'cuando se presiona tecla' permite que nuestro personaje realice una acción específica cuando el usuario presiona una tecla en el teclado. ¿Qué creen que sucederá si usamos este bloque con diferentes teclas?"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (2 minutos): Guiar en la adición de un bloque de movimiento</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Vamos a agregar un bloque de movimiento para que nuestro personaje avance cuando presionemos la tecla. Arrastra el bloque 'mover 10 pasos' desde la categoría de Movimiento y conéctalo debajo del bloque 'cuando se presiona tecla'."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1.5 minutos): Explicar y usar el bloque 'tocando'</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"El bloque 'tocando' permite que nuestro personaje detecte si está en contacto con otro objeto. Esto es útil para crear juegos donde los personajes deben evitar o recoger objetos, en este ejemplo el objeto es nuestro puntero del mouse y nuestro personaje toma la acción de girar, recuerden que las acciones las decidimos nosotros, además podemos cambiar la opción de puntero de mouse a otro objeto que nosotros agreguemos , como una persona, una pelota o lo que encontremos y queramos agregar."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 5 (1.5 minutos): Explicar el bloque 'al presionar la banderita verde'</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Vamos a hacer que nuestro personaje cambie de apariencia cuando toque un objeto. Para comenzar, nos dirigimos al área de código y seleccionamos el bloque 'al presionar la banderita verde'. Este es el bloque que activa todo nuestro programa. Imagina que este bloque es el interruptor que enciende toda la acción."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 6 (1 minuto): Explicar el bloque 'por siempre'</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"A continuación, agregamos el bloque 'por siempre'. Este bloque es como un motor que sigue funcionando sin parar, haciendo que todo lo que pongas dentro de él se repita una y otra vez mientras la banderita verde esté activada. Esto es clave para que nuestro programa siga revisando si algo cambia."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 7 (1 minuto): Agregar un nuevo objeto y posicionarlo</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Es hora de darle un compañero al gato. Vamos a agregar un nuevo objeto a nuestra escena, ¡y elegimos una pelota de basketball! Este será el objeto que el gato va a tocar para cambiar de apariencia. Asegúrate de que la pelota esté en la escena y lista para la acción."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 8 (1 minuto): Configurar la condición con el bloque 'si entonces'</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Ahora seleccionamos al Sprite, que es el gato de Scratch, y agregamos un bloque 'si entonces'. Este bloque es como un guardián que dice: 'Si pasa esto, entonces haz aquello'. Lo vamos a usar para que el gato cambie de disfraz cuando toque la pelota de basketball."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 9 (1 minuto): Usar el bloque 'tocando' dentro del bloque 'si entonces'</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Dentro del bloque 'si entonces', vamos a poner un bloque de 'tocando'. Lo encajamos en el espacio de 'si' y seleccionamos 'pelota de basketball' en el menú desplegable. Así le decimos a Scratch: 'Si el gato toca la pelota de basketball, entonces...'"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 10 (1 minuto): Usar el bloque 'cambiar disfraz a'</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Hora de la magia! Dentro del bloque 'si entonces', colocamos un bloque de 'cambiar disfraz a' y lo duplicamos. En el primero, seleccionamos 'costume 1', y en el segundo, seleccionamos 'costume 2'. Esto hará que cuando el gato toque la pelota, ¡cambie de look!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 11 (1 minuto): Usar el bloque 'esperar' para controlar el tiempo de las animaciones</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Para hacer todo más dinámico, agregamos dos bloques de 'esperar 1 segundo'. En lugar de 1 segundo, cambiamos el tiempo a 0.5 para que el cambio de disfraz ocurra en medio segundo. Ponemos el primer bloque de 'esperar' debajo del primer bloque de 'cambiar disfraz' y el segundo bloque de 'esperar' debajo del segundo bloque de 'cambiar disfraz'. Así, cada cambio de disfraz tendrá una pequeña pausa, creando un efecto visual fluido."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 12 (1 minuto): Activar el programa y probar la interacción</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Es el momento de la verdad! Activamos el programa presionando la banderita verde. Ahora, arrastra la pelota de basketball hacia el gato y observa cómo el gato cambia de apariencia cada vez que la pelota lo toca. ¡Es como si estuviera jugando al baloncesto y cambiando su estilo al mismo tiempo!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 13 (1.5 minutos): Mencionar un dato histórico relevante</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¿Sabían que los primeros sensores utilizados en computadoras datan de la década de 1960? Eran mucho más grandes y menos precisos que los que usamos hoy en día, pero abrieron el camino para la tecnología que tenemos ahora."</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 4 (3 pasos) -->
+<div id="activity-4" class="activity">
+    <div class="banner" onclick="toggleContent('state-change')">
+        <div class="title">
+            <span>🧘 Actividad 4: State Change (3 pasos)</span>
+            <span>⏰ Tiempo: 3 minutos</span>
+        </div>
+        <div class="subtitle">Relajar y enfocar a los estudiantes</div>
+        <div class="summary">Realizar ejercicios de respiración y estiramientos ligeros para ayudar a los estudiantes a enfocarse y prepararse para continuar con la lección.</div>
+    </div>
+    <div id="state-change" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (1 minuto): Realizar una actividad breve de cambio de estado</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Genios, es hora de activar nuestro 'Modo Zen'! Vamos a hacer un ejercicio rápido para despejar nuestras mentes y prepararnos para lo que viene. ¡Vamos a movernos un poco!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Dirigir un ejercicio de respiración profunda, seguido de estiramientos ligeros</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Vamos a respirar profundamente... inhala por la nariz, exhala por la boca. Ahora estiremos los brazos hacia arriba, y hacia los lados. ¡Sientan cómo se relajan los músculos y cómo se aclara la mente!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Evaluar el estado de ánimo después del ejercicio</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¿Cómo se sienten ahora? Si están más relajados y listos para seguir, denme un pulgar hacia arriba. Si necesitan un poco más de tiempo, crucen los brazos."</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 5 (3 pasos) -->
+<div id="activity-5" class="activity">
+    <div class="banner" onclick="toggleContent('team-gnius')">
+        <div class="title">
+            <span>🤝 Actividad 5: Team Gnius (3 pasos)</span>
+            <span>⏰ Tiempo: 4 minutos</span>
+        </div>
+        <div class="subtitle">Formar equipos y colaborar en proyectos</div>
+        <div class="summary">Organizar a los estudiantes en equipos, asignar roles específicos y guiarlos en la discusión y aplicación de lo aprendido en Scratch.</div>
+    </div>
+    <div id="team-gnius" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (1 minuto): Organizar a los estudiantes en equipos de 3 personas y asignar roles específicos</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Vamos a formar nuestros equipos Gnius. Cada equipo tendrá 3 miembros. Asignen los siguientes roles: Líder, Diseñador de Interacción, y Verificador de Errores. ¡Trabajemos juntos para crear algo increíble!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Pedir a los equipos que revisen sus roles y se aseguren de que todos saben qué hacer</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Tienen 1 minuto para revisar sus roles. El Líder coordina, el Diseñador de Interacción se asegura de que los bloques de eventos y sensores estén bien organizados, y el Verificador de Errores revisa que todo funcione correctamente."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (2 minutos): Los estudiantes discuten en sus equipos cómo aplicar lo aprendido sobre los bloques de eventos y sensores en Scratch</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Ahora, hablen en sus equipos sobre cómo usarían los bloques de eventos y sensores en un proyecto de Scratch. Compartan ideas, y piensen en cómo cada rol puede contribuir a la creación del proyecto. Tienen 2 minutos."</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 6 (3 pasos) -->
+<div id="activity-6" class="activity">
+    <div class="banner" onclick="toggleContent('challenge')">
+        <div class="title">
+            <span>🏆 Actividad 6: Challenge (3 pasos)</span>
+            <span>⏰ Tiempo: 13 minutos</span>
+        </div>
+        <div class="subtitle">Aplicar lo aprendido en un proyecto de Scratch</div>
+        <div class="summary">Los estudiantes usarán los bloques de eventos y sensores para crear un proyecto en Scratch en equipos.</div>
+    </div>
+    <div id="challenge" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (1 minuto): Presentar el desafío y explicar los roles</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Ahora vamos a poner en práctica lo que hemos aprendido. Cada equipo trabajará en un proyecto en Scratch, donde usarán los bloques 'cuando se presiona tecla' y 'tocando'. ¡Este es su momento para brillar!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (10 minutos): Los equipos aplican los bloques aprendidos para crear un proyecto en Scratch</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Recuerden, el Líder coordina el trabajo del equipo, el Diseñador de Interacción se encarga de los bloques y cómo se conectan, y el Verificador de Errores asegura que todo funcione correctamente. ¡Trabajen juntos y creen algo increíble! TIENEN 10 MINUTOS."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (2 minutos): Supervisar el trabajo de los equipos y ofrecer retroalimentación</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Tiempo de compartir lo que han creado! Cada equipo, muéstrenos su proyecto y explíquen cómo usaron los bloques para hacer que su personaje interactúe."</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 7 (3 pasos) -->
+<div id="activity-7" class="activity">
+    <div class="banner" onclick="toggleContent('easter-egg')">
+        <div class="title">
+            <span>🥚 Actividad 7: Easter Egg (3 pasos)</span>
+            <span>⏰ Tiempo: 3 minutos</span>
+        </div>
+        <div class="subtitle">Recompensar la atención y participación</div>
+        <div class="summary">Lanzar una pregunta relacionada con la lección y recompensar a los estudiantes que respondan correctamente.</div>
+    </div>
+    <div id="easter-egg" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (1 minuto): Lanzar una pregunta relacionada con la lección</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Ahora es el momento de ver quién ha estado prestando atención! En la siguiente diapositiva, encontrarán una pregunta sobre algo que discutimos hoy. Los tres primeros en levantar la mano y dar la respuesta correcta ganarán un Mon-e. ¡Estén atentos!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Elegir a los tres estudiantes que levantaron la mano primero y recibir sus respuestas en voz baja</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Voy a seleccionar a tres de ustedes. Vengan uno por uno y díganme su respuesta en voz baja."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Proyectar la diapositiva con la respuesta correcta</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Muy bien! La respuesta correcta es... ¡Los sensores comenzaron a utilizarse en computadoras en la década de 1960! ¡Felicidades a los ganadores! Recuerden, este es un aspecto importante en la evolución de la tecnología que usamos hoy."</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 8 (3 pasos) -->
+<div id="activity-8" class="activity">
+    <div class="banner" onclick="toggleContent('honor-dojo')">
+        <div class="title">
+            <span>🏅 Actividad 8: Honor de Dojo (3 pasos)</span>
+            <span>⏰ Tiempo: 4 minutos</span>
+        </div>
+        <div class="subtitle">Reflexión y cierre de la clase</div>
+        <div class="summary">Invitar a los estudiantes a reflexionar sobre lo aprendido, agradecer su participación, y organizar el espacio de trabajo.</div>
+    </div>
+    <div id="honor-dojo" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (1 minuto): Reflexionar sobre lo aprendido y la importancia del trabajo en equipo</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Genios, hemos llegado al final de nuestra misión de hoy. Quiero agradecerles por su esfuerzo y dedicación. ¿Quién quiere compartir algo que haya aprendido o disfrutado en la clase de hoy?"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Agradecer a todos los estudiantes por su esfuerzo y participación</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Estoy muy orgulloso/a de todos ustedes por el gran trabajo que hicieron hoy. ¡Sigamos adelante con el mismo entusiasmo en la próxima misión!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (2 minutos): Organizar el espacio de trabajo</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Antes de despedirnos, asegúrense de que todo esté en su lugar. Vamos a dejar nuestro Dojo limpio y listo para la próxima misión. ¡Gracias por cuidar de nuestro espacio!"</div>
+        </div>
+    </div>
+</div>
+    </div> <!-- Cierre del container -->
+
+    <!-- Scripts adicionales si es necesario -->
+    <script>
+        // Agregar scripts adicionales aquí si es necesario
+    </script>
+
+    </body>
+    </html>
